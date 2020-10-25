@@ -5,7 +5,6 @@ import cgi
 
 data = cgi.FieldStorage()
 
-data = cgi.FieldStorage()
 nombre = data.getvalue('nom')
 email = data.getvalue('correo')
 password = data.getvalue('con')
@@ -29,5 +28,6 @@ else:
     sql = ("insert into Usuario values ('{}','{}',SHA( '{}'),'{}','{}')".format(nombre, email, password, num_cel, dire))
     cur.execute(sql)
     cnx.commit()
+    
     print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
 cnx.close()
