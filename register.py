@@ -28,6 +28,5 @@ else:
     sql = ("insert into Usuario values ('{}','{}',SHA( '{}'),'{}','{}')".format(nombre, email, password, num_cel, dire))
     cur.execute(sql)
     cnx.commit()
-    print('<h1> bienvenido {} </h1>'.format(nombre))
-    #print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
+    print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
 cnx.close()
