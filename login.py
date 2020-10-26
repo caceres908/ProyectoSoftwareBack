@@ -6,8 +6,8 @@ import cgi
 data = cgi.FieldStorage()
 
 data = cgi.FieldStorage()
-usuario = data.getvalue('nombre')
-password = data.getvalue('con')
+usuario = data.getvalue('correo')
+password = data.getvalue('pass')
 
 
 try:
