@@ -11,8 +11,7 @@ password = data.getvalue('pass')
 
 
 try:
-    cnx = mysql.connector.connect(
-        user='Caceres', password='s28Nor04+', database='baseArquitectura', host='127.0.0.1')
+    cnx = mysql.connector.connect(user='Caceres', password='s28Nor04+', database='baseArquitectura', host='127.0.0.1')
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
