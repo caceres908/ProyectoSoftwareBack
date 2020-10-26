@@ -6,7 +6,7 @@ import cgi
 data = cgi.FieldStorage()
 
 data = cgi.FieldStorage()
-nombre = data.getvalue('nombre')
+usuario = data.getvalue('nombre')
 password = data.getvalue('con')
 
 
@@ -24,9 +24,13 @@ else:
     cur = cnx.cursor()
     print('Content-Type: text/html')
     print('')
-    sql = ("insert into CLIENTES values ('{}',SHA( '{}'))".format(nombre, password))
+    sql = ("select* from Usuario where Usuario = '{}' and Contraseña = SHA('{}')  ".format(usuario, password))
     cur.execute(sql)
-    cnx.commit()
-    print('<h1> Bienvenido {} </h1>'.format(nombre))
+    com = cur.fetchall()
+    if com:
+        print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
+    else:
+        print('<h1> Fallo </h1>')
+        cnx.commit()
 
 cnx.close()
