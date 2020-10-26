@@ -6,7 +6,7 @@ import cgi
 data = cgi.FieldStorage()
 
 data = cgi.FieldStorage()
-usuario = data.getvalue('correo')
+correo = data.getvalue('correo')
 password = data.getvalue('pass')
 
 
@@ -24,7 +24,7 @@ else:
     cur = cnx.cursor()
     print('Content-Type: text/html')
     print('')
-    sql = ("select* from Usuario where Usuario = '{}' and Contraseña = SHA('{}')  ".format(usuario, password))
+    sql = ("select* from Usuario where Email = '{}' and contraseña = SHA('{}')  ".format(correo, password))
     cur.execute(sql)
     com = cur.fetchall()
     if com:
