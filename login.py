@@ -5,7 +5,6 @@ import cgi
 
 data = cgi.FieldStorage()
 
-data = cgi.FieldStorage()
 correo = data.getvalue('correo')
 password = data.getvalue('pass')
 
