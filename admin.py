@@ -30,6 +30,6 @@ else:
         contra = i[2]
         tel = i[3]
         dire = i [4]
-    print(nom,email,contra,tel,dire)
+        print(nom,email,contra,tel,dire)
 
 cnx.close()
