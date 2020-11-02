@@ -8,6 +8,8 @@ data = cgi.FieldStorage()
 correo = data.getvalue('correo')
 password = data.getvalue('pass')
 
+adminC = 'admin@gmail.com'
+adminPass = '12345'
 
 try:
     cnx = mysql.connector.connect(user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
@@ -25,7 +27,10 @@ else:
     sql = ("select* from Usuario where Email = '{}' and contraseña = SHA('{}')  ".format(correo, password))
     cur.execute(sql)
     com = cur.fetchall()
-    if com:
+    
+    if correo == adminC and password == adminPass:
+        print('<script> location.href="/Entregable2CorteSoftware/admin.html";</script>')
+    elif com:
         print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
     else:
         print('<h1> Fallo </h1>')
