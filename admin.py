@@ -4,6 +4,14 @@ import mysql.connector
 from mysql.connector import errorcode
 import cgi
 
+def infoBD(nombre,email,contraseña,telefono, direccion):
+    with open('/Entregable2CorteSoftware/admin.html') as f:
+        doc = f.read()
+        template = Template(doc)
+        page = template.render(nom=nombre, correo=email, passw=contraseña, phone=telefono, add=direccion)
+        print(page)
+
+
 data = cgi.FieldStorage()
 
 correo = data.getvalue('correo')
@@ -35,9 +43,3 @@ else:
 
 cnx.close()
 
-def infoBD(nombre,email,contraseña,telefono, direccion):
-    with open('/Entregable2CorteSoftware/admin.html') as f:
-        doc = f.read()
-        template = Template(doc)
-        page = template.render(nom=nombre, correo=email, passw=contraseña, phone=telefono, add=direccion)
-        print(page)
