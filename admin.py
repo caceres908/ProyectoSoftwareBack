@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from jinja2 import Template
 import mysql.connector
 from mysql.connector import errorcode
 import cgi
@@ -30,6 +31,13 @@ else:
         contra = i[2]
         tel = i[3]
         dire = i [4]
-        print(nom,email,contra,tel,dire)
+        infoBD(nom,email,contra,tel,dire)
 
 cnx.close()
+
+def infoBD(nombre,email,contraseña,telefono, direccion):
+    with open('/Entregable2CorteSoftware/admin.html') as f:
+        doc = f.read()
+        template = Template(doc)
+        page = template.render(nom=nombre, correo=email, passw=contraseña, phone=telefono, add=direccion)
+        print(page)
