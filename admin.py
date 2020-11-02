@@ -25,6 +25,11 @@ else:
     cur.execute(sql)
     row = cur.fetchall()
     for i in row:
-        print(i[0])
+        nom = i[0]
+        email = i[1]
+        contra = i[2]
+        tel = i[3]
+        dire = i [4]
+    print(nom,email,contra,tel,dire)
 
 cnx.close()
