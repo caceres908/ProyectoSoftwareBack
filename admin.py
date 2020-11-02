@@ -25,6 +25,6 @@ else:
     cur.execute(sql)
     row = cur.fetchall()
     for i in row:
-        print(row["Nombre"])
+        print(i[0])
 
 cnx.close()
