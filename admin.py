@@ -5,11 +5,13 @@ import mysql.connector
 from mysql.connector import errorcode
 import cgi
 
-def infoBD(nombre,email,contraseña,telefono, direccion):
+
+def infoBD(nombre, email, contraseña, telefono, direccion):
     with open('/var/www/html/Entregable2CorteSoftware/admin.html') as f:
         doc = f.read()
         template = Template(doc)
-        page = template.render(nom=nombre, correo=email, passw=contraseña, phone=telefono, add=direccion)
+        page = template.render(nom=nombre, correo=email,
+                               passw=contraseña, phone=telefono, add=direccion)
         print(page)
 
 
@@ -19,7 +21,8 @@ correo = data.getvalue('correo')
 password = data.getvalue('pass')
 
 try:
-    cnx = mysql.connector.connect(user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
+    cnx = mysql.connector.connect(
+        user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -39,17 +42,19 @@ else:
         email = i[1]
         contra = i[2]
         tel = i[3]
-        dire = i [4]
+        dire = i[4]
         datos = {
             'Nombre': nom,
             'Email': email,
-            'Contraseña': contra,
+            'password': contra,
             'Telefono': tel,
-            'Dirección': dire, 
+            'Direccion': dire,
         }
         datos_json = json.dumps(datos)
-        print(datos_json)
+
         '''infoBD(nom,email,contra,tel,dire)'''
+    print('[')
+    print(datos_json)
+    print(']')
 
 cnx.close()
-
