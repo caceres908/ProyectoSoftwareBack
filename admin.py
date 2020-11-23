@@ -50,6 +50,7 @@ else:
         print (datos)
         datos_json = json.dumps(datos)
         print('datos JSON',datos_json)
+        type(datos_json)
         '''infoBD(nom,email,contra,tel,dire)'''
 
 cnx.close()
