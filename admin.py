@@ -39,7 +39,8 @@ else:
         contra = i[2]
         tel = i[3]
         dire = i [4]
-        infoBD(nom,email,contra,tel,dire)
+        print(nom)
+        '''infoBD(nom,email,contra,tel,dire)'''
 
 cnx.close()
 
