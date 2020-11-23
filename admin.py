@@ -37,6 +37,7 @@ else:
     sql = ("select* from Usuario ")
     cur.execute(sql)
     row = cur.fetchall()
+    print('[')
     for i in row:
         nom = i[0]
         email = i[1]
@@ -51,10 +52,11 @@ else:
             'Direccion': dire,
         }
         datos_json = json.dumps(datos)
-
+        print(datos_json)
+        print(',')
         '''infoBD(nom,email,contra,tel,dire)'''
-    print('[')
-    print(datos_json)
+    
+    
     print(']')
 
 cnx.close()
