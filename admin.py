@@ -38,6 +38,8 @@ else:
     cur.execute(sql)
     row = cur.fetchall()
     print('[')
+    lon = len(row)
+    j = 1
     for i in row:
         nom = i[0]
         email = i[1]
@@ -53,10 +55,10 @@ else:
         }
         datos_json = json.dumps(datos)
         print(datos_json)
-        print(',')
+        if j < lon:
+          print(',')
+          j=j+1
         '''infoBD(nom,email,contra,tel,dire)'''
-    
-    
     print(']')
 
 cnx.close()
