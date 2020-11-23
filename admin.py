@@ -51,7 +51,7 @@ else:
             'Telefono': tel,
             'Direccion': dire,
         }
-        datos_json = json.dumps(datos.__dict__)
+        datos_json = json.dumps(datos)
         print(datos_json)
         print(',')
         '''infoBD(nom,email,contra,tel,dire)'''
