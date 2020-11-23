@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import json
 from jinja2 import Template
 import mysql.connector
 from mysql.connector import errorcode
@@ -47,6 +48,8 @@ else:
             'Dirección': dire, 
         }
         print (datos)
+        datos_json = json.dumps(datos)
+        print('datos JSON',datos_json)
         '''infoBD(nom,email,contra,tel,dire)'''
 
 cnx.close()
