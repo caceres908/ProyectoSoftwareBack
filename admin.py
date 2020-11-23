@@ -48,6 +48,7 @@ else:
             'Dirección': dire, 
         }
         datos_json = json.dumps(datos)
+        print(datos_json)
         '''infoBD(nom,email,contra,tel,dire)'''
 
 cnx.close()
