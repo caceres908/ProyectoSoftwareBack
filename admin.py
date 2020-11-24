@@ -22,11 +22,9 @@ def infoBD(nombre, email, contraseña, telefono, direccion):
 print('Content-Type: text/json')
 print('')
 
-print('antes de try')
 try:
     cnx = mysql.connector.connect(
         user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
-    print('me cinecte')
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -35,9 +33,7 @@ except mysql.connector.Error as err:
     else:
         print(err)
 else:
-    print('antes del cursor')
     cur = cnx.cursor()
-    print('des cursor')
     sql = ("select* from Usuario ")
     cur.execute(sql)
     row = cur.fetchall()
