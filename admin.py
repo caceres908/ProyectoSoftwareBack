@@ -32,7 +32,7 @@ except mysql.connector.Error as err:
         print(err)
 else:
     cur = cnx.cursor()
-    print('Content-Type: text/html')
+    print('Content-Type: text/json')
     print('')
     sql = ("select* from Usuario ")
     cur.execute(sql)
