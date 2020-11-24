@@ -23,5 +23,5 @@ def crear_productos():
 	return "creando producto ewe";
 
 if __name__ == "__main__":
-	app.run()    
+	app.run(host = '0.0.0.0')    
 
