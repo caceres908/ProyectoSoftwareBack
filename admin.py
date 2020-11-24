@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-import json
+
 from jinja2 import Template
 import mysql.connector
 from mysql.connector import errorcode
 import cgi
-
+import json
 
 
 def infoBD(nombre, email, contraseña, telefono, direccion):
@@ -20,7 +20,6 @@ data = cgi.FieldStorage()
 
 print('Content-Type: text/json')
 print('')
-
 
 
 try:
