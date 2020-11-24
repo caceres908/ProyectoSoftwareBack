@@ -6,6 +6,7 @@ from mysql.connector import errorcode
 import cgi
 
 
+
 def infoBD(nombre, email, contraseña, telefono, direccion):
     with open('/var/www/html/Entregable2CorteSoftware/admin.html') as f:
         doc = f.read()
@@ -17,8 +18,10 @@ def infoBD(nombre, email, contraseña, telefono, direccion):
 
 data = cgi.FieldStorage()
 
-correo = data.getvalue('correo')
-password = data.getvalue('pass')
+print('Content-Type: text/json')
+print('')
+
+
 
 try:
     cnx = mysql.connector.connect(
@@ -32,8 +35,7 @@ except mysql.connector.Error as err:
         print(err)
 else:
     cur = cnx.cursor()
-    print('Content-Type: text/json')
-    print('')
+    
     sql = ("select* from Usuario ")
     cur.execute(sql)
     row = cur.fetchall()
