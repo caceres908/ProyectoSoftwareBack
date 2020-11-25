@@ -52,7 +52,7 @@ def mostrar_productos():
                  'Telefono': tel,
                  'Direccion': dire, }
             ]
-            return jsonify(results=list)
+        return jsonify(results=list)
     cnx.close()
 
 
