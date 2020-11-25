@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import mysql.connector
 from mysql.connector import errorcode
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 import json
 
@@ -39,28 +39,20 @@ def mostrar_productos():
         sql = ("select* from Usuario ")
         cur.execute(sql)
         row = cur.fetchall()
-        print('[')
-        lon = len(row)
-        j = 1
         for i in row:
             nom = i[0]
             email = i[1]
             contra = i[2]
             tel = i[3]
             dire = i[4]
-            datos = {
-                'Nombre': nom,
-                'Email': email,
-                'password': contra,
-                'Telefono': tel,
-                'Direccion': dire,
-            }
-            datos_json = json.dumps(datos)
-            print(datos_json)
-            if j < lon:
-                print(',')
-                j = j+1
-        print(']')
+            list = [
+                {'Nombre': nom,
+                 'Email': email,
+                 'password': contra,
+                 'Telefono': tel,
+                 'Direccion': dire, }
+            ]
+            return jsonify(results=list)
     cnx.close()
 
 
