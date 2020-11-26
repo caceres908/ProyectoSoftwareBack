@@ -39,20 +39,20 @@ def mostrar_productos():
         sql = ("select* from Usuario ")
         cur.execute(sql)
         row = cur.fetchall()
+        lista = list()
         for i in row:
             nom = i[0]
             email = i[1]
             contra = i[2]
             tel = i[3]
             dire = i[4]
-            list = [
-                {'Nombre': nom,
-                 'Email': email,
-                 'password': contra,
-                 'Telefono': tel,
-                 'Direccion': dire, }
-            ]
-        return jsonify(results=list)
+            persona = {'Nombre': nom,
+                       'Email': email,
+                       'password': contra,
+                       'Telefono': tel,
+                       'Direccion': dire, }
+            lista.append(persona)
+        return jsonify(results=lista)
     cnx.close()
 
 
