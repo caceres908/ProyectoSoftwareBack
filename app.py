@@ -72,8 +72,8 @@ def crear_usuario():
     nom = post_data.get('nombre')
     ema = post_data.get('correo')
     con = post_data.get('con')
-    tel = post_data('tel')
-    dire = post_data('dire')
+    tel = post_data.get('tel')
+    dire = post_data.get('dire')
     try:
         cnx = mysql.connector.connect(
             user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
