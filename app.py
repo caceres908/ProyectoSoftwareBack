@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import mysql.connector
 from mysql.connector import errorcode
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 
@@ -22,8 +22,8 @@ def hellos():
     return "Hello friend"
 
 
-@app.route('/productosM', methods=['GET'])
-def mostrar_productos():
+@app.route('/usuarioG', methods=['GET'])
+def mostrar_usuarios():
     try:
         cnx = mysql.connector.connect(
             user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
@@ -66,9 +66,31 @@ def borrar_productos():
     return "borrando producto unu"
 
 
-@app.route('/productosC', methods=['POST'])
-def crear_productos():
-    return "creando producto ewe"
+@app.route('/usuarioC', methods=['POST'])
+def crear_usuario():
+    post_data = request.args
+    nom = post_data.get('nombre')
+    ema = post_data.get('correo')
+    con = post_data.get('con')
+    tel = post_data('tel')
+    dire = post_data('dire')
+    try:
+        cnx = mysql.connector.connect(
+            user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with your user name or password")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+        else:
+            print(err)
+    else:
+        cur = cnx.cursor()
+        sql = ("insert into Usuario values ('{}','{}',SHA( '{}'),'{}','{}')".format(nom,ema,con,tel,dire))
+        cur.execute(sql)
+        cnx.commit()
+    cnx.close()
+    
 
 
 if __name__ == "__main__":
