@@ -66,7 +66,7 @@ def borrar_productos():
     return "borrando producto unu"
 
 
-@app.route('/usuarioC', methods=['POST'])
+@app.route('/usuarioC', methods=['GET','POST'])
 def crear_usuario():
     post_data = request.args
     nom = post_data.get('nombre')
