@@ -45,8 +45,8 @@ def mostrar_usuarios():
             nom = i[1]
             email = i[2]
             contra = i[3]
-            tel = i[5]
-            dire = i[6]
+            tel = i[4]
+            dire = i[5]
             persona = {'Id': iden,
                        'Nombre': nom,
                        'Email': email,
