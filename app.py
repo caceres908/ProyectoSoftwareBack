@@ -41,12 +41,14 @@ def mostrar_usuarios():
         row = cur.fetchall()
         lista = list()
         for i in row:
-            nom = i[0]
-            email = i[1]
-            contra = i[2]
-            tel = i[3]
-            dire = i[4]
-            persona = {'Nombre': nom,
+            iden = i[0] 
+            nom = i[1]
+            email = i[2]
+            contra = i[3]
+            tel = i[5]
+            dire = i[6]
+            persona = {'Id': iden,
+                       'Nombre': nom,
                        'Email': email,
                        'password': contra,
                        'Telefono': tel,
