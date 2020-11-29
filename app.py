@@ -86,12 +86,10 @@ def crear_usuario():
             print(err)
     else:
         cur = cnx.cursor()
-        sql = ("insert into Usuario values ('{}','{}',SHA( '{}'),'{}','{}')".format(nom,ema,con,tel,dire))
+        sql = ("insert into Usuario (nombre,Email,contraseña,numero,direccion) values ('{}','{}',SHA( '{}'),'{}','{}')".format(nom,ema,con,tel,dire))
         cur.execute(sql)
         cnx.commit()
     cnx.close()
-    
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
