@@ -18,16 +18,21 @@ app.config.from_object(__name__)
 
 
 CORS(app)
+
+
 @app.route('/')
 def hellos():
     return "Hello friend"
 
+
 try:
     app = flask.Flask(__name__)
     app.config["DEBUG"] = True
-    cnx = mysql.connector.connect(user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
+    cnx = mysql.connector.connect(
+        user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
     CORS(app)
-    @app.route('/usuarioC', methods=['POST']) 
+
+    @app.route('/usuarioC', methods=['POST'])
     def puntua2():
         cur = cnx.cursor()
         data = request.get_json(force=True)
@@ -36,11 +41,13 @@ try:
         con = data.get('con')
         tel = data.get('tel')
         dire = data.get('dire')
-        cur.execute("insert into Usuario (nombre,Email,contraseña,numero,direccion) values (%s,%s,%s,%s,%s)", (nom,ema,con,tel,dire))
+        cur.execute("insert into Usuario (nombre,Email,contraseña,numero,direccion) values (%s,%s,%s,%s,%s)",
+                    (nom, ema, con, tel, dire))
         cnx.commit()
         cur.close()
         return ("1")
     CORS(app)
+
     @app.route('/usuarioG', methods=['GET'])
     def datos_get():
         cur = cnx.cursor()
@@ -49,7 +56,7 @@ try:
         row = cur.fetchall()
         lista = list()
         for i in row:
-            iden = i[0] 
+            iden = i[0]
             nom = i[1]
             email = i[2]
             contra = i[3]
@@ -66,6 +73,7 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
+
     @app.route('/usuariop', methods=['PUT'])
     def actualizar():
         cur = cnx.cursor(buffered=True)
@@ -75,11 +83,13 @@ try:
         con = data.get('con')
         tel = data.get('tel')
         dire = data.get('dire')
-        cur.execute("update Usuario Set nombre = %s,contraseña = %s,numero= %s,direccion= %s  where Email = %s",(nom,con,tel,dire,ema))
+        cur.execute("update Usuario Set nombre = %s,contraseña = %s,numero= %s,direccion= %s  where Email = %s",
+                    (nom, con, tel, dire, ema))
         cnx.commit()
         cur.close()
         return("2")
     CORS(app)
+
     @app.route('/usuariob', methods=['DELETE'])
     def borrar_usuario():
         cur = cnx.cursor(buffered=True)
@@ -90,6 +100,7 @@ try:
         cur.close()
         return("3")
     CORS(app)
+
     @app.route('/productosG', methods=['GET'])
     def preductos_get():
         cur = cnx.cursor()
@@ -98,7 +109,7 @@ try:
         row = cur.fetchall()
         lista = list()
         for i in row:
-            cod = i[0] 
+            cod = i[0]
             nom = i[1]
             des = i[2]
             pre = i[3]
@@ -115,6 +126,7 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
+
     @app.route('/productosP', methods=['POST'])
     def productos_post():
         cur = cnx.cursor()
@@ -124,10 +136,27 @@ try:
         pre = data.get('precio')
         img = data.get('imagen')
         cat = data.get('categoria')
-        cur.execute("insert into Productos (nombre,descripcion,precio,imagen,categoria) values (%s,%s,%s,%s,%s)",(nom,des,pre,img,cat))
+        cur.execute("insert into Productos (nombre,descripcion,precio,imagen,categoria) values (%s,%s,%s,%s,%s)",
+                    (nom, des, pre, img, cat))
         cnx.commit()
         cur.close()
         return ("4")
+    CORS(app)
+
+    @app.route('/productosA', methods=['PUT'])
+    def productos_put():
+        cur = cnx.cursor(buffered=True)
+        data = request.get_json(force=True)
+        nom = data.get('nombre')
+        des = data.get('descripcion')
+        pre = data.get('precio')
+        img = data.get('imagen')
+        cat = data.get('categoria')
+        cur.execute("update Produsctos Set  descripcion = %s, precio = %s, imagen = %s, categoria = %s  where nombre = %s",
+                    ( des, pre, img, cat, nom))
+        cnx.commit()
+        cur.close()
+        return("5")
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -135,6 +164,4 @@ except mysql.connector.Error as err:
         print("Database does not exist")
     else:
         print(err)
-app.run(host='0.0.0.0',debug=True)
-        
-
+app.run(host='0.0.0.0', debug=True)
