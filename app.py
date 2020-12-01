@@ -31,7 +31,6 @@ try:
     cnx = mysql.connector.connect(
         user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
     CORS(app)
-
     @app.route('/usuarioC', methods=['POST'])
     def puntua2():
         cur = cnx.cursor()
@@ -47,7 +46,6 @@ try:
         cur.close()
         return ("1")
     CORS(app)
-
     @app.route('/usuarioG', methods=['GET'])
     def datos_get():
         cur = cnx.cursor()
@@ -73,7 +71,6 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
-
     @app.route('/usuariop', methods=['PUT'])
     def actualizar():
         cur = cnx.cursor(buffered=True)
@@ -89,7 +86,6 @@ try:
         cur.close()
         return("2")
     CORS(app)
-
     @app.route('/usuariob', methods=['DELETE'])
     def borrar_usuario():
         cur = cnx.cursor(buffered=True)
@@ -100,7 +96,6 @@ try:
         cur.close()
         return("3")
     CORS(app)
-
     @app.route('/productosG', methods=['GET'])
     def preductos_get():
         cur = cnx.cursor()
@@ -126,7 +121,6 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
-
     @app.route('/productosP', methods=['POST'])
     def productos_post():
         cur = cnx.cursor()
@@ -142,7 +136,6 @@ try:
         cur.close()
         return ("4")
     CORS(app)
-
     @app.route('/productosA', methods=['PUT'])
     def productos_put():
         cur = cnx.cursor(buffered=True)
@@ -153,7 +146,7 @@ try:
         img = data.get('imagen')
         cat = data.get('categoria')
         cur.execute("update Produsctos Set  descripcion = %s, precio = %s, imagen = %s, categoria = %s  where nombre = %s",
-                    ( des, pre, img, cat, nom))
+                    (des, pre, img, cat, nom))
         cnx.commit()
         cur.close()
         return("5")
