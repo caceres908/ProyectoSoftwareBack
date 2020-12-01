@@ -191,7 +191,6 @@ try:
         cur = cnx.cursor()
         cur.execute("select * from Productos where categoria = 'Aretes' and codigo = '{}' ".format(Codigo))
         rows = cur.fetchall()
-        lista = list()
         for i in rows:
             nom = i[1]
             des = i[2]
@@ -201,10 +200,9 @@ try:
                        'Descripcion': des,
                        'Precio': pre,
                        'Imagen': img,}
-            lista.append(producto)
             cnx.commit()
             cur.close()
-        return jsonify(results = lista)
+        return jsonify(results = producto)
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
