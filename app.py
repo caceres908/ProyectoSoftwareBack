@@ -171,12 +171,11 @@ try:
         rows = cur.fetchall()
         lista = list()
         for i in rows:
-            cod = i[0]
             nom = i[1]
             des = i[2]
             pre = i[3]
             img = i[4]
-            producto = {'Codigo': cod,
+            producto = {
                        'Nombre': nom,
                        'Descripcion': des,
                        'Precio': pre,
