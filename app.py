@@ -114,6 +114,20 @@ try:
             cnx.commit()
             cur.close()
         return jsonify(results=lista)
+    CORS(app)
+    @app.route('/productosP', methods=['POST'])
+    def productos_post():
+        cur = cnx.cursor()
+        data = request.get_json(force=True)
+        nom = data.get('nombre')
+        des = data.get('descripcion')
+        pre = data.get('precio')
+        img = data.get('imagen')
+        cat = data.get('categoria')
+        cur.execute("insert into Productos (nombre,descripcion,precio,imagen,categoria) values (%s,%s,%s,%s,%s)",(nom,des,pre,img,cat))
+        cnx.comit()
+        cnx.close()
+        return ("4")
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
