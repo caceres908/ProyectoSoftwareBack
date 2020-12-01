@@ -16,10 +16,7 @@ app.config.from_object(__name__)
 
 # enable CORS
 
-
 CORS(app)
-
-
 @app.route('/')
 def hellos():
     return "Hello friend"
@@ -150,6 +147,16 @@ try:
         cnx.commit()
         cur.close()
         return("5")
+    CORS(app)
+    @app.route('/productosD', methods=['DELETE'])
+    def productos_delete():
+        cur = cnx.cursor(buffered=True)
+        data = request.get_json(force=True)
+        nom = data.get('nombre')
+        cur.execute("delete from Productos where nombre = '{}'".format(nom))
+        cnx.commit()
+        cur.close()
+        return("6")
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
