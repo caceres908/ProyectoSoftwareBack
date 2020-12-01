@@ -185,7 +185,7 @@ try:
             cur.close()
         return jsonify(results = lista)
     CORS(app)
-    @app.route('/Aretes/<Codigo>', methods=['GET'])
+    @app.route('/Arete/<Codigo>', methods=['GET'])
     def arete_unico(Codigo):
         cur = cnx.cursor()
         cur.execute("select * from Productos where categoria = 'Aretes' and codigo = '{}' ".format(Codigo))
