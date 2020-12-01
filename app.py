@@ -92,6 +92,9 @@ try:
         cnx.commit()
         cur.close()
         return("3")
+
+    # metodos get, post, put y delete para el servidor#
+
     CORS(app)
     @app.route('/productosG', methods=['GET'])
     def preductos_get():
@@ -157,6 +160,33 @@ try:
         cnx.commit()
         cur.close()
         return("6")
+
+
+    #métodos para la visulazación de las diferentes categorias
+    CORS(app)
+    @app.route('/Aretes', methods=['GET'])
+    def aretes_get():
+        cur = cnx.cursor()
+        cur.execute("select * from Productos where categoria = 'Aretes' ")
+        rows = cur.fetchall()
+        lista = list()
+        for i in rows:
+            cod = i[0]
+            nom = i[1]
+            des = i[2]
+            pre = i[3]
+            img = i[4]
+            cat = i[5]
+            producto = {'Codigo': cod,
+                       'Nombre': nom,
+                       'Descripcion': des,
+                       'Precio': pre,
+                       'Imagen': img,
+                       'Categoria': cat}
+            lista.append(producto)
+            cnx.commit()
+            cur.close()
+        return jsonify(results = lista)
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
