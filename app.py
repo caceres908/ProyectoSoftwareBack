@@ -145,7 +145,7 @@ try:
         pre = data.get('precio')
         img = data.get('imagen')
         cat = data.get('categoria')
-        cur.execute("update Produsctos Set  descripcion = %s, precio = %s, imagen = %s, categoria = %s  where nombre = %s",
+        cur.execute("update Productos Set  descripcion = %s, precio = %s, imagen = %s, categoria = %s  where nombre = %s",
                     (des, pre, img, cat, nom))
         cnx.commit()
         cur.close()
