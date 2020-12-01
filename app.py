@@ -171,18 +171,14 @@ try:
         rows = cur.fetchall()
         lista = list()
         for i in rows:
-            cod = i[0]
             nom = i[1]
             des = i[2]
             pre = i[3]
             img = i[4]
-            cat = i[5]
-            producto = {'Codigo': cod,
-                       'Nombre': nom,
+            producto = {'Nombre': nom,
                        'Descripcion': des,
                        'Precio': pre,
-                       'Imagen': img,
-                       'Categoria': cat}
+                       'Imagen': img,}
             lista.append(producto)
             cnx.commit()
             cur.close()
