@@ -126,7 +126,7 @@ try:
         cat = data.get('categoria')
         cur.execute("insert into Productos (nombre,descripcion,precio,imagen,categoria) values (%s,%s,%s,%s,%s)",(nom,des,pre,img,cat))
         cnx.comit()
-        cnx.close()
+        cur.close()
         return ("4")
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
