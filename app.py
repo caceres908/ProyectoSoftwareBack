@@ -125,7 +125,7 @@ try:
         img = data.get('imagen')
         cat = data.get('categoria')
         cur.execute("insert into Productos (nombre,descripcion,precio,imagen,categoria) values (%s,%s,%s,%s,%s)",(nom,des,pre,img,cat))
-        cnx.comit()
+        cnx.commit()
         cur.close()
         return ("4")
 except mysql.connector.Error as err:
