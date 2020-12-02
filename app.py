@@ -17,6 +17,8 @@ app.config.from_object(__name__)
 # enable CORS
 
 CORS(app)
+
+
 @app.route('/')
 def hellos():
     return "Hello friend"
@@ -28,6 +30,7 @@ try:
     cnx = mysql.connector.connect(
         user='Caceres', password='s28Nor04+', database='baseProyecto', host='127.0.0.1')
     CORS(app)
+
     @app.route('/usuarioC', methods=['POST'])
     def puntua2():
         cur = cnx.cursor()
@@ -43,6 +46,7 @@ try:
         cur.close()
         return ("1")
     CORS(app)
+
     @app.route('/usuarioG', methods=['GET'])
     def datos_get():
         cur = cnx.cursor()
@@ -68,6 +72,7 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
+
     @app.route('/usuariop', methods=['PUT'])
     def actualizar():
         cur = cnx.cursor(buffered=True)
@@ -83,6 +88,7 @@ try:
         cur.close()
         return("2")
     CORS(app)
+
     @app.route('/usuariob', methods=['DELETE'])
     def borrar_usuario():
         cur = cnx.cursor(buffered=True)
@@ -96,6 +102,7 @@ try:
     # metodos get, post, put y delete para el servidor#
 
     CORS(app)
+
     @app.route('/productosG', methods=['GET'])
     def preductos_get():
         cur = cnx.cursor()
@@ -121,6 +128,7 @@ try:
             cur.close()
         return jsonify(results=lista)
     CORS(app)
+
     @app.route('/productosP', methods=['POST'])
     def productos_post():
         cur = cnx.cursor()
@@ -136,6 +144,7 @@ try:
         cur.close()
         return ("4")
     CORS(app)
+
     @app.route('/productosA', methods=['PUT'])
     def productos_put():
         cur = cnx.cursor(buffered=True)
@@ -151,6 +160,7 @@ try:
         cur.close()
         return("5")
     CORS(app)
+
     @app.route('/productosD', methods=['DELETE'])
     def productos_delete():
         cur = cnx.cursor(buffered=True)
@@ -161,9 +171,9 @@ try:
         cur.close()
         return("6")
 
-
-    #métodos para la visulazación de las diferentes categorias
+    # métodos para la visulazación de las diferentes categorias
     CORS(app)
+
     @app.route('/Aretes', methods=['GET'])
     def aretes_get():
         cur = cnx.cursor()
@@ -177,19 +187,21 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Codigo': cod,
-                       'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Nombre': nom,
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             lista.append(producto)
             cnx.commit()
             cur.close()
-        return jsonify(results = lista)
+        return jsonify(results=lista)
     CORS(app)
+
     @app.route('/Arete/<Codigo>', methods=['GET'])
     def arete_unico(Codigo):
         cur = cnx.cursor()
-        cur.execute("select * from Productos where categoria = 'Aretes' and codigo = '{}' ".format(Codigo))
+        cur.execute(
+            "select * from Productos where categoria = 'Aretes' and codigo = '{}' ".format(Codigo))
         rows = cur.fetchall()
         for i in rows:
             nom = i[1]
@@ -197,14 +209,15 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             cnx.commit()
             cur.close()
-        return jsonify(results = producto)
+        return jsonify(results=producto)
 
     CORS(app)
+
     @app.route('/Collares', methods=['GET'])
     def collares_get():
         cur = cnx.cursor()
@@ -218,19 +231,21 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Codigo': cod,
-                       'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Nombre': nom,
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             lista.append(producto)
             cnx.commit()
             cur.close()
-        return jsonify(results = lista)
+        return jsonify(results=lista)
     CORS(app)
+
     @app.route('/Collar/<Codigo>', methods=['GET'])
     def collar_unico(Codigo):
         cur = cnx.cursor()
-        cur.execute("select * from Productos where categoria = 'Collares' and codigo = '{}' ".format(Codigo))
+        cur.execute(
+            "select * from Productos where categoria = 'Collares' and codigo = '{}' ".format(Codigo))
         rows = cur.fetchall()
         for i in rows:
             nom = i[1]
@@ -238,14 +253,15 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             cnx.commit()
             cur.close()
-        return jsonify(results = producto)    
+        return jsonify(results=producto)
 
     CORS(app)
+
     @app.route('/Otros', methods=['GET'])
     def otros_get():
         cur = cnx.cursor()
@@ -259,19 +275,21 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Codigo': cod,
-                       'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Nombre': nom,
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             lista.append(producto)
             cnx.commit()
             cur.close()
-        return jsonify(results = lista)
+        return jsonify(results=lista)
     CORS(app)
+
     @app.route('/Otro/<Codigo>', methods=['GET'])
     def otro_unico(Codigo):
         cur = cnx.cursor()
-        cur.execute("select * from Productos where categoria = 'Otros' and codigo = '{}' ".format(Codigo))
+        cur.execute(
+            "select * from Productos where categoria = 'Otros' and codigo = '{}' ".format(Codigo))
         rows = cur.fetchall()
         for i in rows:
             nom = i[1]
@@ -279,12 +297,12 @@ try:
             pre = i[3]
             img = i[4]
             producto = {'Nombre': nom,
-                       'Descripcion': des,
-                       'Precio': pre,
-                       'Imagen': img,}
+                        'Descripcion': des,
+                        'Precio': pre,
+                        'Imagen': img, }
             cnx.commit()
             cur.close()
-        return jsonify(results = producto)    
+        return jsonify(results=producto)
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
