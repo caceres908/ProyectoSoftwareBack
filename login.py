@@ -24,7 +24,7 @@ else:
     cur = cnx.cursor()
     print('Content-Type: text/html')
     print('')
-    sql = ("select* from Usuario where Email = '{}' and contraseña = SHA('{}')  ".format(correo, password))
+    sql = ("select* from Usuario where Email = '{}' and contraseña = '{}'".format(correo, password))
     cur.execute(sql)
     com = cur.fetchall()
     

@@ -25,7 +25,7 @@ else:
     cur = cnx.cursor()
     print('Content-Type: text/html')
     print('')
-    sql = ("insert into Usuario (nombre,Email,contraseña,numero,direccion) values ('{}','{}',SHA( '{}'),'{}','{}')".format(nombre, email, password, num_cel, dire))
+    sql = ("insert into Usuario (nombre,Email,contraseña,numero,direccion) values ('{}','{}','{}','{}','{}')".format(nombre, email, password, num_cel, dire))
     cur.execute(sql)
     cnx.commit()
     print('<script> location.href="/Entregable2CorteSoftware/index.html";</script>')
