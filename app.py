@@ -52,7 +52,7 @@ try:
         cur = cnx.cursor()
         sql = ("select * from Usuario ")
         cur.execute(sql)
-        row = cur.fetchall()
+        row = cur.fetchall() #trae todas las filas de la tabla Usuarios
         lista = list()
         for i in row:
             iden = i[0]
@@ -61,7 +61,7 @@ try:
             contra = i[3]
             tel = i[4]
             dire = i[5]
-            persona = {'Id': iden,
+            persona = {'Id': iden, # Se crea un diccionario que contien toda la información que se trae de la peticion sql
                        'Nombre': nom,
                        'Email': email,
                        'password': contra,
@@ -70,19 +70,19 @@ try:
             lista.append(persona)
             cnx.commit()
             cur.close()
-        return jsonify(results=lista)
+        return jsonify(results=lista) #se retorna un arreglo de objetos JSON 
     CORS(app)
 
     @app.route('/usuariop', methods=['PUT'])
     def actualizar():
-        cur = cnx.cursor(buffered=True)
+        cur = cnx.cursor(buffered=True) #se hace para que la peticiones que se hagan no se retrcen 
         data = request.get_json(force=True)
-        nom = data.get('nombre')
+        nom = data.get('nombre')   #ya que se maneha un JSON para enviar la informacion se poner el dentro de la funcion get la llave que se envia desde el cleinte js
         ema = data.get('correo')
         con = data.get('con')
         tel = data.get('tel')
         dire = data.get('dire')
-        cur.execute("update Usuario Set nombre = %s,contraseña = %s,numero= %s,direccion= %s  where Email = %s",
+        cur.execute("update Usuario Set nombre = %s,contraseña = %s,numero= %s,direccion= %s  where Email = %s", #se actuliza el susuario verificando que exista el correo
                     (nom, con, tel, dire, ema))
         cnx.commit()
         cur.close()
@@ -94,7 +94,7 @@ try:
         cur = cnx.cursor(buffered=True)
         data = request.get_json(force=True)
         ema = data.get('correo')
-        cur.execute("delete from Usuario where Email = '{}'".format(ema))
+        cur.execute("delete from Usuario where Email = '{}'".format(ema)) #se elimina el usuario por medio del correo que llega como parametro 
         cnx.commit()
         cur.close()
         return("3")
@@ -197,7 +197,7 @@ try:
         return jsonify(results=lista)
     CORS(app)
 
-    @app.route('/Arete/<Codigo>', methods=['GET'])
+    @app.route('/Arete/<Codigo>', methods=['GET']) #se creo una ruta que recibira el codigo para poder traer la informacion especifica del producto
     def arete_unico(Codigo):
         cur = cnx.cursor()
         cur.execute(
