@@ -249,7 +249,7 @@ try:
     @app.route('/Otros', methods=['GET'])
     def otros_get():
         cur = cnx.cursor()
-        cur.execute("select * from Productos where categoria = 'Collares' ")
+        cur.execute("select * from Productos where categoria = 'Otros' ")
         rows = cur.fetchall()
         lista = list()
         for i in rows:
@@ -271,7 +271,7 @@ try:
     @app.route('/Otro/<Codigo>', methods=['GET'])
     def otro_unico(Codigo):
         cur = cnx.cursor()
-        cur.execute("select * from Productos where categoria = 'Collares' and codigo = '{}' ".format(Codigo))
+        cur.execute("select * from Productos where categoria = 'Otros' and codigo = '{}' ".format(Codigo))
         rows = cur.fetchall()
         for i in rows:
             nom = i[1]
